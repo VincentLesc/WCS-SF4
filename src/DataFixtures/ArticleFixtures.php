@@ -30,20 +30,6 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
         }
 
-        $article = new Article();
-        $article->setTitle(mb_strtolower("Javascript VS PHP"));
-        $article->setContent("Javascript VS PHP, une rivalité ? Comme dit Douglas Crockford : JavaScript is the world s most misunderstood programming language.");
-        $article->setCategory($this->getReference('category_' . 2));
-        $manager->persist($article);
-        $manager->flush();
-
-        $article = new Article();
-        $article->setTitle(mb_strtolower("javascript meme"));
-        $article->setContent("Welcome to Javascript. Where the objects are made up and the types don t matter !");
-        $article->setCategory($this->getReference('category_' . 2));
-        $manager->persist($article);
-        $manager->flush();
-
     }
 
     public function getDependencies()
