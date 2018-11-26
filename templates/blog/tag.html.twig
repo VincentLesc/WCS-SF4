@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+    <h1>Article according to this tag : {{ tag.name }}.</h1>
+    <br>
+    {% for article in articles %}
+        <div>
+            <a href="{{ path('blog_show', {'slug' : article.title | replace({' ': "-"})}) }}">
+                <h2>Id : {{ article.id }} - {{ article.title }}</h2>
+            </a>
+            <p>{{ article.content }}</p>
+        </div>
+    {% endfor %}
+    <a href="{{ path('homepage') }}">
+        Back to homepage.
+    </a>
+{% endblock %}

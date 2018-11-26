@@ -20,8 +20,10 @@
     <br>
     {% for article in articles %}
         <div>
-            <h2>{{ loop.index }} / {{ article.title }} - Category : {{ article.category.name }}</h2>
-            <p>{{ article.content }}</p>
+            <a href="{{ path('blog_show', {'slug' : article.title | replace({' ': "-"})}) }}">
+                <h2>{{ loop.index }} / {{ article.title }} - Category : {{ article.category.name }}</h2>
+                <p>{{ article.content }}</p>
+            </a>
         </div>
     {% endfor %}
 

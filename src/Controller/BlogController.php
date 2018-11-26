@@ -12,7 +12,9 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Form\ArticleSearchType;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,7 +68,7 @@ class BlogController extends AbstractController
      *
      * @param string $slug The slugger
      *
-     * @Route("/{slug<^[a-z0-9-]*$>}",
+     * @Route("/{slug<^[a-z0-9-.]*$>}",
      *     name="blog_show")
      * @return                         Response A response instance
      */
@@ -97,7 +99,8 @@ class BlogController extends AbstractController
             'blog/show.html.twig',
             [
                 'slug' => $slug,
-                'article' => $article
+                'article' => $article,
+                'tags' => $article->getTags()
             ]
         );
     }
@@ -151,6 +154,24 @@ class BlogController extends AbstractController
             'blog/category.html.twig',
             ['category' => $category,
                 'articles' => $category->getArticles()]
+        );
+    }
+
+    /**
+     * Show articles according to tag with bidirectional
+     *
+     * @Route("/tag/{name}", name="blog_show_all_tags")
+     *
+     * @ParamConverter("category", options={"mapping": {"category": "name"}})
+     * @return                     Response A response instance
+     */
+    public function showAllByTags(Tag $tag)
+    {
+        return $this->render(
+            'blog/tag.html.twig',
+            ['tag' => $tag,
+                'articles' => $tag->getArticles()
+            ]
         );
     }
 }

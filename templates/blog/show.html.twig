@@ -11,6 +11,16 @@
         <h2>Category : {{ article.category.name }}</h2>
         <p>Formatted slug : {{ slug }}</p>
         <p>{{ article.content }}</p>
+        <strong>Tags :</strong>
+        <ul>
+            {% for tag in tags %}
+                <a href="{{ path('blog_show_all_tags', {'name': tag.name}) }}">
+                <li>{{ tag.name }} </li>
+                </a>
+            {% else %}
+                <li>No tags for this article</li>
+            {% endfor %}
+        </ul>
     </div>
     <a href="{{ path('homepage') }}">
         Back to homepage.
