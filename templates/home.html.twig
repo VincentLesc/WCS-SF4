@@ -1,0 +1,38 @@
+{# templates/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('homepage') }}">
+        Homepage.
+    </a>
+    <h1>Hello WCS</h1>
+    <h2>Here some links :</h2>
+    <a href="{{ path('lucky_number') }}">
+        Testing number() method from LuckyController.
+    </a>
+    <br>
+    <a href="{{ path('blog_show', { 'slug': "javascript-vs-php" }) }}">
+        Testing show() method from BlogController with a real article's slug.
+    </a>
+    <br>
+    <a href="{{ path('blog_index') }}">
+        Testing index() method from BlogController to view all articles.
+    </a>
+    <br>
+    <a href="{{ path('blog_show_category', { 'category': "javascript" }) }}">
+        Testing showByCategory() to select all articles according to a category ("javascript" category here) <b>LIMIT TO 3 (by findby()</b>).
+    </a>
+    <br>
+    <a href="{{ path('blog_show_all_category', { 'category': "javascript" }) }}">
+        Testing showAllByCategory() to select all articles from Category object ("javascript" category here) <b>bidirectional</b>).
+    </a>
+    <br>
+    <a href="{{ path('addCategory') }}">
+        Ajouter une catégorie
+    </a>
+
+{% endblock %}

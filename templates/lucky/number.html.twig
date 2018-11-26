@@ -1,0 +1,12 @@
+{# templates/lucky/number.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Lucky Number{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+{% block body %}
+    <h1>Your lucky number is {{ number }}</h1>
+    <a href="{{ path('homepage') }}">
+        Back to homepage.
+    </a>
+{% endblock %}
